@@ -25,23 +25,20 @@ app.use(cookieParser());
 
 
 
-// DATABASE
-// var db = process.env.MONGODB_URI || "mongodb://localhost/fwaking-awesome-movies";
-// mongoose.connect(db);
+DATABASE
+var db = process.env.MONGODB_URI || "mongodb://localhost/hair-rules";
+mongoose.connect(db);
 
 
 // CONTROLLERS
-// var usersController = require('./controllers/users.js');
-// app.use('/users', usersController);
-
-// var authController = require('./controllers/auth.js')
-// app.use('/auth', authController);
+// var hairController = require('./controllers/hair.js');
+// app.use('/hair', hairController);
 
 // var seedController = require('./controllers/seed.js');
 // app.use('/seed', seedController);
 
 // LISTEN
 app.listen(port);
-console.log('=============================');
-console.log('Server running off PORT: ' + port);
-console.log('=============================');
+console.log("=============================");
+console.log("Server running off Andre", port);
+console.log("=============================");
