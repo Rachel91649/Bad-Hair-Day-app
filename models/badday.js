@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 // MODEL SCHEMA
 // ==========================
 var BadSchema = mongoose.Schema({
-	image_url: String
+	image: String
 });
 
 
