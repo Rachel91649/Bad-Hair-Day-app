@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 // ==========================
 // MODEL SCHEMA
 // ==========================
-var GoodSchema = mongoose.Schema({
+var BadSchema = mongoose.Schema({
 	image_url: String
 });
 
@@ -16,5 +16,5 @@ var GoodSchema = mongoose.Schema({
 // ROUTE IT OUT FAM!!
 // ==========================
 
-var Good = mongoose.model('Good', GoodSchema);
-module.exports = Good;
+var Bad = mongoose.model('Bad', BadSchema);
+module.exports = Bad;
