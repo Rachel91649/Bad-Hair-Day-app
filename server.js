@@ -5,7 +5,6 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var cookieParser = require('cookie-parser');
 var port = process.env.PORT || 3000;
 
 
@@ -21,12 +20,12 @@ app.use(methodOverride(function(req, res){
     return method;
   }
 }));
-app.use(cookieParser());
 
 
 
-DATABASE
-var db = process.env.MONGODB_URI || "mongodb://localhost/hair-rules";
+
+// DATABASE
+var db = process.env.MONGODB_URI || "mongodb://localhost/bad-hair-day";
 mongoose.connect(db);
 
 
@@ -40,5 +39,5 @@ mongoose.connect(db);
 // LISTEN
 app.listen(port);
 console.log("=============================");
-console.log("Server running off Andre", port);
+console.log("Server is running with  Andre"+port);
 console.log("=============================");
