@@ -11,22 +11,24 @@ var Bad = require('../models/badday.js');
 // =============================
 //	ROUTES
 // =============================
-//need route to loop through Good hair collection and return randomly selected image if the humidity is <= a specified percentage and display on screen(ajax call on front end will handle that)
-router.get('/goods/:goods_id', function(req, res){
+//need route to loop through Bad hair collection and return randomly selected image if the humidity is >= a specified percentage and display on screen(ajax call on front end will handle that)
+router.get('/:id', function(req, res){
 	console.log("=======================");
-	console.log("testing goodday route");
+	console.log("testing badday route");
 	console.log("=======================");
-	console.log("goods is goods_id "+ req.params.goods_id);
-	Good.findById(req.params.id, function(err, goods){
+	console.log("goods is bads_id "+ req.params.id);
+	Bad.findById(req.params.id, function(err, bad){
 		if(err) {
 			console.log(err);
 		}
-		res.json(goods);
+		res.json(bad);
 	});
 });
 
 
-//need route to loop through Bad hair collection and return randomly selected image if the humidity is >= a specified percentage and display on screen(ajax call on front end will handle that)
+
+
+
 
 
 //need a route to create new good and bad hair day images
