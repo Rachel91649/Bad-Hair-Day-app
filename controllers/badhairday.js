@@ -25,6 +25,51 @@ router.get('/:id', function(req, res){
 	});
 });
 
+// =============================
+//	new image
+// =============================
+//create a new bad image by sending the new data that is found in the body and creating a new image
+//if there is an error, console.log err and respond with status 500 - end
+router.post('/', function(req, res){
+	Bad.create(req.body, function(err, bad){
+		if(err){
+			console.log(err);
+			res.status(500).end();
+		}
+		res.send(true);
+	});
+});
+
+// =============================
+//	update image
+// =============================
+// ** Need to test via postman ** \\
+//find by Id and update the image by the parameters found in the body
+//if there is an error, console.log err
+router.put('/:id/edit', function(req, res){
+	console.log("====================");
+	console.log(" EDIT ROUTE WORKING");
+	console.log("====================");
+	Bad.findByIdAndUpdate(req.params.id, {image: req.body.image}, function(err, bad){
+		if (err) {
+			console.log(err)
+		}
+	});
+});
+
+// =============================
+//	delete image
+// =============================
+
+//find bad image by id and remove it from the database
+// if there is an error, console.log(err)
+router.delete('/:id', function(req, res){
+	Bad.findByIdAndRemove(req.params.id, function(err, bad){
+		if (err){
+			console.log(err);
+		}
+	});
+});
 
 
 
