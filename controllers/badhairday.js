@@ -28,6 +28,7 @@ router.get('/:id', function(req, res){
 // =============================
 //	new image
 // =============================
+// ** Need to test via postman ** \\ ---->>> Tested 7/9/16 @4:24pm via postman
 //create a new bad image by sending the new data that is found in the body and creating a new image
 //if there is an error, console.log err and respond with status 500 - end
 router.post('/', function(req, res){
@@ -43,7 +44,7 @@ router.post('/', function(req, res){
 // =============================
 //	update image
 // =============================
-// ** Need to test via postman ** \\
+// ** Need to test via postman ** \\ ---->>> Tested 7/9/16 @4:24pm via postman
 //find by Id and update the image by the parameters found in the body
 //if there is an error, console.log err
 router.put('/:id/edit', function(req, res){
@@ -60,7 +61,7 @@ router.put('/:id/edit', function(req, res){
 // =============================
 //	delete image
 // =============================
-
+// not sure if I can test this via postman --need to google this when I get home
 //find bad image by id and remove it from the database
 // if there is an error, console.log(err)
 router.delete('/:id', function(req, res){

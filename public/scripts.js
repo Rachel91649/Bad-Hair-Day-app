@@ -4,7 +4,7 @@ console.log("I'm going to make React Love me...");
 // MAIN COMPONENT - THE KEEPER OF LOST SOULS
 // ===========================================
 // will hold all the state
-
+//get initial stat of search bar
 
 // ===========================================
 // SEARCH COMPONENT
