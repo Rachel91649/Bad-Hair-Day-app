@@ -30,8 +30,11 @@ mongoose.connect(db);
 
 
 // CONTROLLERS
-// var hairController = require('./controllers/hair.js');
-// app.use('/hair', hairController);
+var goodhairdayController = require('./controllers/goodhairday.js');
+app.use('/goods', goodhairdayController);
+
+// var badhairdayController = require('./controllers/badhairday.js');
+// app.use('/bads', badhairdayController);
 
 // var seedController = require('./controllers/seed.js');
 // app.use('/seed', seedController);
