@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var request = require('request');
 var router = express.Router();
 var openWeather = process.env.OPEN_WEATHER_ID;
+var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 //This is where I will put the weather api call
 

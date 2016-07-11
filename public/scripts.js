@@ -52,9 +52,11 @@ var MainComponent = React.createClass({
 					searchWeather={this.searchWeather}
 				/>
 			</div>
-			<div>
-				<WeatherDisplay />
-			</div>
+			//<div>
+				//<WeatherDisplay
+			//		weatherData={this.state.weatherDisplay}
+			//	/>
+			//</div>
 		);
 	}
 });
@@ -110,10 +112,12 @@ var WeatherSearch = React.createClass({
 // just renders..??
 var WeatherDisplay = React.createClass({
 	render: function(){
+		var weatherData = this.props.weatherData;
+		var self = this;
 		return(
 			//what am I rending on the user side?
 			//The users current weather that I just got from the api call
-			var
+			<div></div>
 		)
 	}
 })
