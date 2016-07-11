@@ -48,15 +48,15 @@ var MainComponent = React.createClass({
 	render: function(){
 		return(
 			<div>
+				<h1>BAD HAIR DAY??</h1>
 				<WeatherSearch
 					searchWeather={this.searchWeather}
 				/>
+				<HairResult />
+				<WeatherDisplay
+					weatherData={this.state.weatherDisplay}
+				/>
 			</div>
-			//<div>
-				//<WeatherDisplay
-			//		weatherData={this.state.weatherDisplay}
-			//	/>
-			//</div>
 		);
 	}
 });
@@ -117,7 +117,9 @@ var WeatherDisplay = React.createClass({
 		return(
 			//what am I rending on the user side?
 			//The users current weather that I just got from the api call
-			<div></div>
+			<div>
+				<h1>weather display goes here</h1>
+			</div>
 		)
 	}
 })
@@ -136,9 +138,19 @@ var WeatherDisplay = React.createClass({
 
 
 // ===========================================
-// IMAGE DISPLAY COMPONENT
+// Hair Result DISPLAY COMPONENT
 // ===========================================
 // just renders
+
+var HairResult = React.createClass({
+	render: function(){
+		return(
+			<div>
+				<h1>image result goes here</h1>
+			</div>
+		);
+	}
+});
 
 // ===========================================
 //	RESET BUTTON COMPONENT

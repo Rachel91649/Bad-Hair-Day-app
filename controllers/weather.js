@@ -14,6 +14,15 @@ var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 //ajax calls on the frontend will handle talking to my backend routes
 
+// router.get('/getweather/:zip', function(req, res){
+// 	console.log("====================");
+// 	console.log("this is params city:");
+// 	console.log("====================");
+// 	console.log(req.params.zip);
+// 	request("http://api.wunderground.com/api/" + weatherUnderground + "conditions/bestfct/q/" + req.params.zip + .json)
+// });
+
+
 
 router.get('/getweather/:zip', function(req, res){
 	console.log("====================");
@@ -25,4 +34,6 @@ router.get('/getweather/:zip', function(req, res){
 		res.json(weatherData)
 	});
 });
+
+
 module.exports = router;
