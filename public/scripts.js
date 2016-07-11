@@ -11,7 +11,7 @@ var MainComponent = React.createClass({
 			// goodhairday: [],
 			// badhairday: [],
 			// weatherSearch: "",
-			weather: [],
+			weatherDisplay: null,
 			display: "",
 		};
 	},
@@ -24,12 +24,17 @@ var MainComponent = React.createClass({
 		$.ajax({
 			url: "/weather/getweather/" + zipcode,
 			method: "GET",
-			success: function(data){
+			success: function(weatherData){
 				console.log("============================");
 				console.log("This is weather search data:");
-				console.log(data);
+				console.log(weatherData);
 				console.log("============================");
 			}
+		});
+	},
+	handleCurrentWeather: function(weatherData, zipcode){
+		this.setState({
+			weatherDisplay: {weather: weatherData, zipcode: zipcode}
 		});
 	},
 	// changeSearchState: function(data){
@@ -97,6 +102,15 @@ var WeatherSearch = React.createClass({
 // WEATHER DISPLAY COMPONENT
 // ===========================================
 // just renders..??
+var WeatherDisplay = React.createClass({
+	render: function(){
+		return(
+			//what am I rending on the user side?
+			//The users current weather that I just got from the api call
+			var
+		)
+	}
+})
 
 
 // ===========================================
