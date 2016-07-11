@@ -31,6 +31,10 @@ router.get('/getweather/:zip', function(req, res){
 	console.log(req.params.zip);
 	request("http://api.openweathermap.org/data/2.5/weather?zip=" + req.params.zip + ",us&APPID=" + openWeather, function(error, repsonse, body){
 		var weatherData = JSON.parse(body)
+		console.log("====================");
+		console.log(weatherData.main.humidity);
+		console.log("====================");
+
 		res.json(weatherData)
 	});
 });
