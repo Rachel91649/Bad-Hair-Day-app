@@ -27,20 +27,20 @@ router.get('/', function(req, res){
 		if(err) {
 			console.log(err);
 		}
-		var image = [];
+		var images = [];
 		for (var i = 0; i < good.length; i++){
-			image.push(good[i].image);
+			images.push(good[i].image);
 		}
 		var shuffle = function(o) {//function shuffles. i = the length of my deck; j returns a random index number in the deck. the card in that index number is located and switches places with index[0]. This continues until the process has iterated through the entire length of the deck.
 			for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 				return o;
 		};
-		shuffle(image);
+		shuffle(images);
 		console.log("===================");
 		console.log("this is image array");
 		// console.log(good[i].image);
-		console.log(image);
-		console.log(image[0]);
+		console.log(images);
+		console.log(images[0]);
 		console.log("===================");
 		res.json(good);
 	});
