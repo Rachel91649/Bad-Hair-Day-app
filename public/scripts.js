@@ -29,7 +29,10 @@ var MainComponent = React.createClass({
 				console.log("This is weather search data:");
 				console.log(weatherData);
 				console.log("============================");
-			}
+			}.bind(this),
+			error: function(xhr, status, err){
+				console.error(status, err.toString());
+			}.bind(this)
 		});
 	},
 	handleCurrentWeather: function(weatherData, zipcode){
