@@ -49,6 +49,9 @@ var MainComponent = React.createClass({
 					searchWeather={this.searchWeather}
 				/>
 			</div>
+			<div>
+				<WeatherDisplay />
+			</div>
 		);
 	}
 });
