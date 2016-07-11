@@ -79,7 +79,8 @@ var MainComponent = React.createClass({
 					badsAjax={this.badsAjax}
 					goodsAjax={this.goodsAjax}
 				/>
-				<HairResult />
+				<HairCheck />
+				<HairResultDisplay />
 				<WeatherDisplay
 					weatherData={this.state.weatherDisplay}
 				/>
@@ -105,9 +106,10 @@ var WeatherSearch = React.createClass({
 		console.log(zipcode);
 		console.log("==================");
 		this.props.searchWeather(zipcode);
-		console.log(this.props.badsAjax());
-		console.log("==================");
-		console.log(this.props.goodsAjax());
+		// this is just for testing
+		// console.log(this.props.badsAjax());
+		// console.log("==================");
+		// console.log(this.props.goodsAjax());
 	},
 	handleSearchChange: function(e){
 		this.setState({searchText: e.target.value})
@@ -165,22 +167,38 @@ var WeatherDisplay = React.createClass({
 // IMAGE GRAB QUERY COMPONENT
 // ===========================================
 //changes state??? not sure yet
+var HairCheck = React.createClass({
+	//need to pass weather data down to this component
+	humidityCheck: function(humidity){
+		if(humidity >= 85){
+			badsAjax();
+		} else {
+			goodsAjax()
+		}
+	},
+	render: function(){//how can I inject the image from appropriately called Ajax Call into the render
+		return(
+			<div>
+				<img src=""/>
+			</div>
+		);
+	}
+});
 
 
 // ===========================================
 // Hair Result DISPLAY COMPONENT
 // ===========================================
 // just renders
-
-var HairResult = React.createClass({
+var HairResultDisplay = React.createClass({
 	render: function(){
 		return(
-			<div>
-				<h1>image result goes here</h1>
-			</div>
+			<div></div>
 		);
 	}
 });
+
+
 
 // ===========================================
 //	RESET BUTTON COMPONENT
