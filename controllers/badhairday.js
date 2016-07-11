@@ -12,7 +12,7 @@ var Bad = require('../models/badday.js');
 //	ROUTES
 // =============================
 //need route to loop through Bad hair collection and return randomly selected image if the humidity is >= a specified percentage and display on screen(ajax call on front end will handle that)
-router.get('/', function(req, res){
+router.get('/badhair', function(req, res){
 	// console.log("=======================");
 	// console.log("testing badday route");
 	// console.log("=======================");
@@ -37,6 +37,10 @@ router.get('/', function(req, res){
 		};
 		shuffle(images);
 		// res.json(bad[0])
+		console.log("this is bad-image:");
+		console.log("==================");
+		console.log(images[0]);
+		console.log("==================");
 		res.json(images[0]);
 	});
 });

@@ -20,9 +20,33 @@ var MainComponent = React.createClass({
 	// 		weatherSearch: text,
 	// 	});
 	// },
+	badsAjax: function(){
+		$.ajax({
+			url: "/bads/badhair/",
+			method: "GET",
+			success: function(data){
+				console.log(data)
+			}.bind(this),
+			error: function(xhr, status, err){
+				console.log(status, err.toString());
+			}.bind(this)
+		});
+	},
+	goodsAjax: function(){
+		$.ajax({
+			url: "/goods/goodhair",
+			method: "GET",
+			success: function(data){
+				console.log(data)
+			}.bind(this),
+			error: function(xhr, status, err){
+				console.error(status, err.toString());
+			}.bind(this)
+		});
+	},
 	searchWeather: function(zipcode){
 		$.ajax({
-			url: "/weather/getweather/" + zipcode,
+			url: "/weather/currentweather/" + zipcode,
 			method: "GET",
 			success: function(weatherData){
 				console.log("============================");
@@ -40,6 +64,7 @@ var MainComponent = React.createClass({
 			weatherDisplay: {weather: weatherData, zipcode: zipcode}
 		});
 	},
+	
 	// changeSearchState: function(data){
 	// 	this.setState({
 	// 		weather: data,
@@ -51,6 +76,8 @@ var MainComponent = React.createClass({
 				<h1>BAD HAIR DAY??</h1>
 				<WeatherSearch
 					searchWeather={this.searchWeather}
+					badsAjax={this.badsAjax}
+					goodsAjax={this.goodsAjax}
 				/>
 				<HairResult />
 				<WeatherDisplay
@@ -78,6 +105,9 @@ var WeatherSearch = React.createClass({
 		console.log(zipcode);
 		console.log("==================");
 		this.props.searchWeather(zipcode);
+		console.log(this.props.badsAjax());
+		console.log("==================");
+		console.log(this.props.goodsAjax());
 	},
 	handleSearchChange: function(e){
 		this.setState({searchText: e.target.value})

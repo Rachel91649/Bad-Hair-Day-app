@@ -24,7 +24,7 @@ var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 
 
-router.get('/getweather/:zip', function(req, res){
+router.get('/currentweather/:zip', function(req, res){
 	console.log("====================");
 	console.log("this is params :zip:");
 	console.log("====================");
