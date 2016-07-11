@@ -3,9 +3,9 @@
 // =============================
 var express = require('express');
 var mongoose = require('mongoose');
-var db = process.env.MONGODB_URI || "mongodb://localhost/bad-hair-day";
+var request = require('request');
 var router = express.Router();
-var Good = require('../models/goodday.js');
+var openWeather = process.env.OPEN_WEATHER_ID;
 
 //This is where I will put the weather api call
 
@@ -13,4 +13,15 @@ var Good = require('../models/goodday.js');
 
 //ajax calls on the frontend will handle talking to my backend routes
 
+
+router.get('/getweather/:zip', function(req, res){
+	console.log("====================");
+	console.log("this is params :zip:");
+	console.log("====================");
+	console.log(req.params.zip);
+	request("http://api.openweathermap.org/data/2.5/weather?zip=" + req.params.zip + ",us&APPID=" + openWeather, function(error, repsonse, body){
+		var weatherData = JSON.parse(body)
+		res.json(weatherData)
+	});
+});
 module.exports = router;
