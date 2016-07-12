@@ -1,10 +1,10 @@
-console.log("I'm going to make React Love me...");
+// console.log("I'm going to make React Love me...");
 
-// ===========================================
-// MAIN COMPONENT - THE KEEPER OF LOST SOULS
-// ===========================================
-// will hold all the state
-//get initial stat of search bar
+// // ===========================================
+// // MAIN COMPONENT - THE KEEPER OF LOST SOULS
+// // ===========================================
+// // will hold all the state
+// //get initial stat of search bar
 var MainComponent = React.createClass({
 	getInitialState: function(){
 		return{
@@ -44,6 +44,13 @@ var MainComponent = React.createClass({
 			}.bind(this)
 		});
 	},
+	handleWeatherResult: function(weatherData, zipcode){
+		// console.log(weatherData);
+		// console.log(zipcode);
+		this.setState({
+			weatherResult: {weather: weatherData, zipcode: zipcode}
+		});
+	},
 	searchWeather: function(zipcode){
 		$.ajax({
 			url: "/weather/currentweather/" + zipcode,
@@ -53,17 +60,14 @@ var MainComponent = React.createClass({
 				console.log("This is weather search data:");
 				console.log(weatherData);
 				console.log("============================");
+				this.handleWeatherResult(weatherData, zipcode);
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
 			}.bind(this)
 		});
 	},
-	handleCurrentWeather: function(weatherData, zipcode){
-		this.setState({
-			weatherDisplay: {weather: weatherData, zipcode: zipcode}
-		});
-	},
+	
 	
 	// changeSearchState: function(data){
 	// 	this.setState({
@@ -76,23 +80,21 @@ var MainComponent = React.createClass({
 				<h1>BAD HAIR DAY??</h1>
 				<WeatherSearch
 					searchWeather={this.searchWeather}
+				/>
+				<WeatherDisplay
 					badsAjax={this.badsAjax}
 					goodsAjax={this.goodsAjax}
-				/>
-				<HairCheck />
-				<HairResultDisplay />
-				<WeatherDisplay
-					weatherData={this.state.weatherDisplay}
+					weatherResult={this.state.weatherResult}
 				/>
 			</div>
 		);
 	}
 });
 
-// ===========================================
-// SEARCH COMPONENT
-// ===========================================
-//changes state
+// // ===========================================
+// // SEARCH COMPONENT
+// // ===========================================
+// //changes state
 var WeatherSearch = React.createClass({
 	getInitialState: function(){
 		return{
@@ -138,35 +140,66 @@ var WeatherSearch = React.createClass({
 	}
 });
 
-// ===========================================
-// WEATHER DISPLAY COMPONENT
-// ===========================================
-// just renders..??
+// // ===========================================
+// // WEATHER DATA COMPONENT
+// // ===========================================
+// // just renders..??
 var WeatherDisplay = React.createClass({
+	
+	handleImages: function(){
+	 var weatherData = this.props.weatherResult;
+	 var imageResult;
+
+	 // if(weatherData.weather.main.humidity >= 85}) {
+	 // 	badsAjax();
+	 // 	// console.log(data);
+	 // } else {
+	 // 	goodsAjax();
+	 // 	// console.log(data);
+	 // }
+	},
 	render: function(){
-		var weatherData = this.props.weatherData;
-		var self = this;
-		return(
-			//what am I rending on the user side?
-			//The users current weather that I just got from the api call
-			<div>
-				<h1>weather display goes here</h1>
-			</div>
-		)
+		console.log(this.props);
+		var weatherData = this.props.weatherResult;
+		console.log("=============");
+		console.log(weatherData)
+		var imageResult = ""
+		// if ({weatherData.weather.main.humidity >= 85){
+		// 	badsAjax();
+		// 	console.log(data);
+		// } else {
+		// 	goodsAjax();
+		// 	console.log(data);
+		// }
+				//make badsAjax
+				//imgURL = returned data
+		//if weatherData.weather.humidity < 85
+				//make goodAjax
+				////imgURL = returned data
+
+
+		if(weatherData == null){
+			return(null)
+		} else {
+			return(
+				//what am I rending on the user side?
+				//The users current weather that I just got from the api call
+				<div>
+					<h1>weather display goes here</h1>
+					 <p>{weatherData.weather.name}</p>
+					 <p>humidity:{weatherData.weather.main.humidity}</p>
+					 <img src={this.handleImages} />
+				</div>
+			);
+		}
 	}
-})
+});
 
 
-// ===========================================
-// WEATHER SEARCH RESULT COMPONENT
-// ===========================================
-// just renders
-
-
-// ===========================================
-// IMAGE GRAB QUERY COMPONENT
-// ===========================================
-//changes state??? not sure yet
+// // ===========================================
+// // IMAGE GRAB QUERY COMPONENT
+// // ===========================================
+// //changes state??? not sure yet
 var HairCheck = React.createClass({
 	//need to pass weather data down to this component
 	humidityCheck: function(humidity){
@@ -186,33 +219,35 @@ var HairCheck = React.createClass({
 });
 
 
-// ===========================================
-// Hair Result DISPLAY COMPONENT
-// ===========================================
-// just renders
-var HairResultDisplay = React.createClass({
-	render: function(){
-		return(
-			<div></div>
-		);
-	}
-});
+// // ===========================================
+// // Hair Result DISPLAY COMPONENT
+// // ===========================================
+// // just renders
+// var HairResultDisplay = React.createClass({
+// 	render: function(){
+// 		return(
+// 			<div>
+// 				<h1>hair image result goes here</h1>
+// 			</div>
+// 		);
+// 	}
+// });
 
 
 
-// ===========================================
-//	RESET BUTTON COMPONENT
-// ===========================================
-// on click this will reset the entire page back to it's original state
+// // ===========================================
+// //	RESET BUTTON COMPONENT
+// // ===========================================
+// // on click this will reset the entire page back to it's original state
 
 
-// ======================================
-// REACT DOM
-// ======================================
+// // ======================================
+// // REACT DOM
+// // ======================================
 
 ReactDOM.render(
 	<MainComponent />,
 	document.getElementById("container"));
 
 
-// ======================================
+// // ======================================

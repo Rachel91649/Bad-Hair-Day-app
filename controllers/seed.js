@@ -5,8 +5,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var db = process.env.MONGODB_URI || "mongodb://localhost/bad-hair-day";
 var router = express.Router();
-var Goods = require('../models/goodday.js');
-var Bads = require('../models/badday.js');
+var Good = require('../models/goodday.js');
+var Bad = require('../models/badday.js');
 
 // =============================
 //	SEED ROUTE AND DATA
