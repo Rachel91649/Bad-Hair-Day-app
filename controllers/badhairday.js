@@ -43,6 +43,13 @@ router.get('/badhair', function(req, res){
 		console.log("==================");
 		res.json(images[0]);
 	});
+
+	// Bad.find({}, function(err, badImage){
+	// 	if (err){
+	// 		console.log(err);
+	// 	}
+	// 	res.json(badImage);
+	// });
 });
 
 // =============================

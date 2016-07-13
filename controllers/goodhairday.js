@@ -44,6 +44,12 @@ router.get('/goodhair', function(req, res){
 		console.log("===================");
 		res.json(images[0]);
 	});
+	// Good.find({}, function(err, goodImage){
+	// 	if (err){
+	// 		console.log(err);
+	// 	}
+	// 	res.json(goodImage);
+	// });
 });
 
 //How can I display a random image:

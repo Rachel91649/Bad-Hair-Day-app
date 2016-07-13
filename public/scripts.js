@@ -8,11 +8,11 @@
 var MainComponent = React.createClass({
 	getInitialState: function(){
 		return{
-			// goodhairday: [],
-			// badhairday: [],
+			goodHairDay: "",
+			badHairDay: "",
 			// weatherSearch: "",
-			weatherDisplay: null,
-			display: "",
+			// weatherDisplay: null,
+			display: "search"
 		};
 	},
 	// handleWeatherSearch: function(text){//this will set the state of the weather search bar to user's input text
@@ -24,8 +24,14 @@ var MainComponent = React.createClass({
 		$.ajax({
 			url: "/bads/badhair/",
 			method: "GET",
-			success: function(data){
-				console.log(data)
+			success: function(image){
+				// console.log(data)
+				// var image = [];
+				// badHairDay.push(data);
+				// console.log(image);
+				this.goodsAjax();
+				this.setState({ badHairDay: image })
+				 // this.handleBadHairDay(data);
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.log(status, err.toString());
@@ -36,14 +42,31 @@ var MainComponent = React.createClass({
 		$.ajax({
 			url: "/goods/goodhair",
 			method: "GET",
-			success: function(data){
-				console.log(data)
+			success: function(image){
+				// console.log(data)
+				// var goodImage = [];
+				// data.goodHairDay.forEach(function(image){
+				// 	goodImage.push(image);
+				// })
+				// goodHairDay.push(data);
+				// console.log(data);
+				this.setState({ goodHairDay: image })
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
 			}.bind(this)
 		});
 	},
+	// handleBadHairDay: function(image){
+	// 	this.setState({
+	// 		badHairDay: { badHairDay: image }
+	// 	});
+	// },
+	// handleGoodHairDay: function(image){
+	// 	this.setState({
+	// 		goodHairDay: { goodHairDay: image }
+	// 	});
+	// },
 	handleWeatherResult: function(weatherData, zipcode){
 		// console.log(weatherData);
 		// console.log(zipcode);
@@ -56,10 +79,11 @@ var MainComponent = React.createClass({
 			url: "/weather/currentweather/" + zipcode,
 			method: "GET",
 			success: function(weatherData){
-				console.log("============================");
-				console.log("This is weather search data:");
-				console.log(weatherData);
-				console.log("============================");
+				// console.log("============================");
+				// console.log("This is weather search data:");
+				// console.log(weatherData);
+				// console.log("============================");
+			  this.badsAjax();
 				this.handleWeatherResult(weatherData, zipcode);
 			}.bind(this),
 			error: function(xhr, status, err){
@@ -67,34 +91,56 @@ var MainComponent = React.createClass({
 			}.bind(this)
 		});
 	},
-	
-	
+	// switchDisplay: function(){
+	// 	if(this.state.display == null){
+	// 		this.setState({display: "search"})
+	// 	} else {
+	// 		this.setState({display: "results"})
+	// 		this.badAjax();
+	// 		this.goodAjax();
+	// 	}
+	// },
 	// changeSearchState: function(data){
 	// 	this.setState({
 	// 		weather: data,
 	// 	});
 	// },
+	//need to create an if/else statement to toggle the displays
+	//will need to add functionality to switch the state in main component
+
 	render: function(){
-		return(
-			<div>
-				<h1>BAD HAIR DAY??</h1>
-				<WeatherSearch
-					searchWeather={this.searchWeather}
-				/>
-				<WeatherDisplay
-					badsAjax={this.badsAjax}
-					goodsAjax={this.goodsAjax}
-					weatherResult={this.state.weatherResult}
-				/>
-			</div>
-		);
+		// if(this.state.display === "search"){
+			return(
+				<div>
+					<h1>BAD HAIR DAY??</h1>
+					<WeatherSearch
+						searchWeather={this.searchWeather}
+						badsAjax={this.badsAjax}
+						goodsAjax={this.goodsAjax}
+					/>
+			
+					<WeatherDisplay 
+						goodHairDay={this.state.goodHairDay}
+						badHairDay={this.state.badHairDay}
+						weatherResult={this.state.weatherResult}
+					/>
+				</div>
+			);
+		
+				
+				{// <HairResultDisplay
+				// 	goodHairDay={this.state.goodHairDay}
+				// 	badHairDay={this.state.badHairDay}
+				// 	weatherResult={this.state.weatherResult}
+			 //  />
+			}
 	}
 });
 
-// // ===========================================
-// // SEARCH COMPONENT
-// // ===========================================
-// //changes state
+// ===========================================
+// SEARCH COMPONENT
+// ===========================================
+//changes state
 var WeatherSearch = React.createClass({
 	getInitialState: function(){
 		return{
@@ -104,14 +150,15 @@ var WeatherSearch = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		var zipcode = this.state.searchText.trim();
-		console.log("==================");
+		console.log("========ZipCode==========");
 		console.log(zipcode);
 		console.log("==================");
 		this.props.searchWeather(zipcode);
 		// this is just for testing
-		// console.log(this.props.badsAjax());
-		// console.log("==================");
-		// console.log(this.props.goodsAjax());
+		// console.log("=======Image Ajax Calls Results===========");
+		//this.props.badsAjax();
+		// console.log("===========================================");
+		//this.props.goodsAjax();
 	},
 	handleSearchChange: function(e){
 		this.setState({searchText: e.target.value})
@@ -140,47 +187,45 @@ var WeatherSearch = React.createClass({
 	}
 });
 
-// // ===========================================
-// // WEATHER DATA COMPONENT
-// // ===========================================
-// // just renders..??
-var WeatherDisplay = React.createClass({
-	
-	handleImages: function(){
-	 var weatherData = this.props.weatherResult;
-	 var imageResult;
 
-	 // if(weatherData.weather.main.humidity >= 85}) {
-	 // 	badsAjax();
-	 // 	// console.log(data);
-	 // } else {
-	 // 	goodsAjax();
-	 // 	// console.log(data);
-	 // }
-	},
+// ===========================================
+//  WEATHER Display COMPONENT
+// ===========================================
+var WeatherDisplay = React.createClass({
+	// badsAjax();
+	// goodAjax();
+	// getImages: function(){
+	//  var weatherData = this.props.weatherResult;
+	//  if (weatherData.weather.main.humidity >= 85) {
+	// 		<img src={badImage} />
+	// 	} else {
+	// 		<img src={goodImage} />
+	// 		console.log("HALP!");
+	// 	}
+	// },
+	//  // if(weatherData.weather.main.humidity >= 85}) {
+	//  // 	badsAjax();
+	//  // 	// console.log(data);
+	//  // } else {
+	//  // 	goodsAjax();
+	//  // 	// console.log(data);
+	//  // }
+	// },
 	render: function(){
 		console.log(this.props);
 		var weatherData = this.props.weatherResult;
 		console.log("=============");
 		console.log(weatherData)
-		var imageResult = ""
-		// if ({weatherData.weather.main.humidity >= 85){
-		// 	badsAjax();
-		// 	console.log(data);
-		// } else {
-		// 	goodsAjax();
-		// 	console.log(data);
-		// }
-				//make badsAjax
-				//imgURL = returned data
-		//if weatherData.weather.humidity < 85
-				//make goodAjax
-				////imgURL = returned data
 
+		//const humid = renderIf({weatherData.weather.main.humidity <= 85});
+		// console.log("=======humidity==========");
+		// console.log(humid)
+		var goodImage = this.props.goodHairDay;
+ 		var badImage = this.props.badHairDay;
 
-		if(weatherData == null){
+		if (weatherData == null){
 			return(null)
-		} else {
+		} else if (weatherData != null && weatherData.weather.main.humidity >= 30 ) {
 			return(
 				//what am I rending on the user side?
 				//The users current weather that I just got from the api call
@@ -188,35 +233,98 @@ var WeatherDisplay = React.createClass({
 					<h1>weather display goes here</h1>
 					 <p>{weatherData.weather.name}</p>
 					 <p>humidity:{weatherData.weather.main.humidity}</p>
-					 <img src={this.handleImages} />
+						<img src={badImage} />
 				</div>
 			);
-		}
-	}
-});
-
-
-// // ===========================================
-// // IMAGE GRAB QUERY COMPONENT
-// // ===========================================
-// //changes state??? not sure yet
-var HairCheck = React.createClass({
-	//need to pass weather data down to this component
-	humidityCheck: function(humidity){
-		if(humidity >= 85){
-			badsAjax();
 		} else {
-			goodsAjax()
+			return(
+				<div>
+					<img src={goodImage} /> 
+				</div>
+			);	
 		}
-	},
-	render: function(){//how can I inject the image from appropriately called Ajax Call into the render
-		return(
-			<div>
-				<img src=""/>
-			</div>
-		);
 	}
 });
+
+// // ======================================
+// // HAIR RESULT DISPLAY
+// // ======================================
+// var HairResultDisplay = React.createClass({
+// 	render: function(){
+// 		console.log(this.props);
+// 		var weatherData = this.props.weatherResult;
+// 		console.log("=============");
+// 		console.log(weatherData)
+// 		// var imageResult = this.getImages;
+// 		// var good = this.goodImage.map(function(image){
+// 		// 	return(
+// 		// 		{image} 
+// 		// 	);
+// 		// });
+// 		var goodImage = this.props.goodHairDay;
+// 		var badImage = this.props.badHairDay;
+
+// 		console.log("this is goodImage:")
+// 		console.log(goodImage);
+// 		console.log("====================");
+// 		// console.log(good);
+// 		console.log("====================");
+// 		console.log("this is bad image:");
+// 		console.log(badImage);
+//  		console.log("====================");
+		
+// 		if(weatherData.weather.main.humidity >= 70){
+// 			return(
+// 				<div>
+// 					<img src={badImage} />
+// 				</div>
+// 			)
+// 		} else {
+// 			return(
+// 				<div>
+// 					<img src={goodImage} />
+// 				</div>
+// 			)
+// 		}
+// 	}
+// });
+
+
+
+// ======================================
+// REACT DOM
+// ======================================
+
+ReactDOM.render(
+	<MainComponent />,
+	document.getElementById("container"));
+
+
+// ======================================
+
+
+// SCRAP CODE //
+// // // ===========================================
+// // // IMAGE GRAB QUERY COMPONENT
+// // // ===========================================
+// // //changes state??? not sure yet
+// var HairCheck = React.createClass({
+// 	//need to pass weather data down to this component
+// 	humidityCheck: function(humidity){
+// 		if(humidity >= 85){
+// 			badsAjax();
+// 		} else {
+// 			goodsAjax()
+// 		}
+// 	},
+// 	render: function(){//how can I inject the image from appropriately called Ajax Call into the render
+// 		return(
+// 			<div>
+// 				<img src=""/>
+// 			</div>
+// 		);
+// 	}
+// });
 
 
 // // ===========================================
@@ -235,19 +343,19 @@ var HairCheck = React.createClass({
 
 
 
-// // ===========================================
-// //	RESET BUTTON COMPONENT
-// // ===========================================
-// // on click this will reset the entire page back to it's original state
+// ===========================================
+//	RESET BUTTON COMPONENT
+// ===========================================
+// on click this will reset the entire page back to it's original state
 
 
-// // ======================================
-// // REACT DOM
-// // ======================================
+//trying to render image//
+	 {//{this.getImages}
+	}
 
-ReactDOM.render(
-	<MainComponent />,
-	document.getElementById("container"));
-
-
-// // ======================================
+	 {// handleimage();
+	 }
+	 {//{this.handleImages}
+	}
+	 {//<img src={this.handleImages} />
+	}
