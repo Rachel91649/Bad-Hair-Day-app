@@ -227,8 +227,7 @@ var AddGoodImage = React.createClass({
 	handleFormChange: function(e){
 		this.setState({imageURL: e.target.value})
 	},
-	handleSubmit: function(e){
-		e.preventDefault();
+	handleSubmit: function(){
 		var imageURL = this.state.imageURL.trim();
 		// console.log("========imageURL==========");
 		// console.log(imageURL);
@@ -265,8 +264,7 @@ var AddBadImage = React.createClass({
 	handleFormChange: function(e){
 		this.setState({imageURL: e.target.value})
 	},
-	handleSubmit: function(e){
-		e.preventDefault();
+	handleSubmit: function(){
 		var imageURL = this.state.imageURL.trim();
 		// console.log("========imageURL==========");
 		// console.log(imageURL);

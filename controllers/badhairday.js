@@ -11,6 +11,12 @@ var Bad = require('../models/badday.js');
 // =============================
 //	ROUTES
 // =============================
+
+router.get('/badsindex', function(req, res){
+	Bad.find({}, function(err, bad){
+		res.json(bad);
+	});
+});
 //need route to loop through Bad hair collection and return randomly selected image if the humidity is >= a specified percentage and display on screen(ajax call on front end will handle that)
 router.get('/badhair', function(req, res){
 	
@@ -32,9 +38,10 @@ router.get('/badhair', function(req, res){
 		console.log("==================");
 		console.log(images[0]);
 		console.log("==================");
-		res.send(images[0]);
+		res.json(images[0]);
 	});
 });
+
 
 // =============================
 //	new image

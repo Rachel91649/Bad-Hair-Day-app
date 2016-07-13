@@ -11,6 +11,12 @@ var Good = require('../models/goodday.js');
 // =============================
 //	GOOD HAIR DAY IMAGE ROUTE
 // =============================
+router.get('/goodsindex', function(req,res){
+	Good.find({}, function(err, good){
+		res.send(good);
+	});
+
+});
 //need route to loop through Good hair collection and return randomly selected image if the humidity is <= a specified percentage and display on screen(ajax call on front end will handle that)
 router.get('/goodhair', function(req, res){
 	
@@ -33,7 +39,7 @@ router.get('/goodhair', function(req, res){
 		// console.log(images);
 		console.log(images[0]);
 		console.log("===================");
-		res.send(images[0]);
+		res.json(images[0]);
 	});
 });
 
