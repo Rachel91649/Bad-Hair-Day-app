@@ -32,7 +32,7 @@ router.get('/badhair', function(req, res){
 		console.log("==================");
 		console.log(images[0]);
 		console.log("==================");
-		res.json(images[0]);
+		res.send(images[0]);
 	});
 });
 

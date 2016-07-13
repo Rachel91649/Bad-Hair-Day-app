@@ -140,7 +140,7 @@ var ResultDisplay = React.createClass({
 
 		if (weatherData == null){
 			return(null)
-		} else if (weatherData != null && weatherData.weather.main.humidity >= 80) {
+		} else if (weatherData != null && weatherData.weather.main.humidity >= 2) {
 			return(
 				<div className="img-holder">
 					{//<h1>weather display goes here</h1>
