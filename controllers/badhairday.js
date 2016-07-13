@@ -13,16 +13,7 @@ var Bad = require('../models/badday.js');
 // =============================
 //need route to loop through Bad hair collection and return randomly selected image if the humidity is >= a specified percentage and display on screen(ajax call on front end will handle that)
 router.get('/badhair', function(req, res){
-	// console.log("=======================");
-	// console.log("testing badday route");
-	// console.log("=======================");
-	// console.log("goods is bads_id "+ req.params.id);
-	// Bad.findById(req.params.id, function(err, bad){
-	// 	if(err) {
-	// 		console.log(err);
-	// 	}
-	// 	res.json(bad);
-	// });
+	
 	Bad.find({}, function(err, bad){
 		if(err) {
 			console.log(err);
@@ -43,13 +34,6 @@ router.get('/badhair', function(req, res){
 		console.log("==================");
 		res.json(images[0]);
 	});
-
-	// Bad.find({}, function(err, badImage){
-	// 	if (err){
-	// 		console.log(err);
-	// 	}
-	// 	res.json(badImage);
-	// });
 });
 
 // =============================
@@ -101,21 +85,32 @@ router.delete('/:id', function(req, res){
 
 
 
+module.exports = router;
 
-
+// =========== Scrap Code =========== \\
 
 //need a route to create new good and bad hair day images
 //they can be created via post man
 //need a route to update an existing good/bad hair day image
 //can be done via postman
 //need a route to delete an existing good/bad hair day image
-//can be done via postman???
+//can be done via postman??
 
+// console.log("=======================");
+	// console.log("testing badday route");
+	// console.log("=======================");
+	// console.log("goods is bads_id "+ req.params.id);
+	// Bad.findById(req.params.id, function(err, bad){
+	// 	if(err) {
+	// 		console.log(err);
+	// 	}
+	// 	res.json(bad);
+	// });
 
-// =============================
-//	API CALL
-// =============================
+	// Bad.find({}, function(err, badImage){
+	// 	if (err){
+	// 		console.log(err);
+	// 	}
+	// 	res.json(badImage);
+	// });
 
-//need route to weather api
-
-module.exports = router;

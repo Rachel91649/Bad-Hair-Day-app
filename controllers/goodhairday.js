@@ -13,16 +13,7 @@ var Good = require('../models/goodday.js');
 // =============================
 //need route to loop through Good hair collection and return randomly selected image if the humidity is <= a specified percentage and display on screen(ajax call on front end will handle that)
 router.get('/goodhair', function(req, res){
-	// console.log("=======================");
-	// console.log("testing goodday route");
-	// console.log("=======================");
-	// console.log("goods is goods_id "+ req.params.id);
-	// Good.findById(req.params.id, function(err, good){
-	// 	if(err) {
-	// 		console.log(err);
-	// 	}
-	// 	res.json(good);
-	// });
+	
 	Good.find({}, function(err, good){
 		if(err) {
 			console.log(err);
@@ -44,18 +35,68 @@ router.get('/goodhair', function(req, res){
 		console.log("===================");
 		res.json(images[0]);
 	});
+});
+
+// ================================== 
+//	new image
+// ================================== 
+router.post('/', function(req, res){
+	Good.create(req.body, function(err, good){
+		if(err){
+			console.log(err);
+			res.status(500).end();
+		}
+		res.send(true);
+	});
+});
+
+// ================================== 
+//	edit image url
+// ================================== 
+router.put('/:id/edit', function(req, res){
+	console.log("====================");
+	console.log(" EDIT ROUTE WORKING");
+	console.log("====================");
+	Good.findByIdAndUpdate(req.params.id, {image: req.body.image}, function(err, good){
+		if (err) {
+			console.log(err)
+		}
+	});
+});
+
+// =============================
+//	delete image
+// =============================
+router.delete('/:id', function(req, res){
+	Good.findByIdAndRemove(req.params.id, function(err, good){
+		if (err){
+			console.log(err);
+		}
+	});
+});
+
+module.exports = router;
+
+// =========== Scrap Code =========== \\
+//How can I display a random image:
+//1. loop over all the images and push the urls into an empty array
+//2. shuffle the array of urls
+//3. use the 1st image of the array
+//	# should I do this on the front end or back end??? #
+// console.log("=======================");
+	// console.log("testing goodday route");
+	// console.log("=======================");
+	// console.log("goods is goods_id "+ req.params.id);
+	// Good.findById(req.params.id, function(err, good){
+	// 	if(err) {
+	// 		console.log(err);
+	// 	}
+	// 	res.json(good);
+	// });
+
 	// Good.find({}, function(err, goodImage){
 	// 	if (err){
 	// 		console.log(err);
 	// 	}
 	// 	res.json(goodImage);
 	// });
-});
-
-//How can I display a random image:
-//1. loop over all the images and push the urls into an empty array
-//2. shuffle the array of urls
-//3. use the 1st image of the array
-//	# should I do this on the front end or back end??? #
-
-module.exports = router;
