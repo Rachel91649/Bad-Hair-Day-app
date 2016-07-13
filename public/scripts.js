@@ -25,7 +25,7 @@ var MainComponent = React.createClass({
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.log(status, err.toString());
-			}.bind(this)
+			}.bind(this),
 		});
 	},
 	goodsAjax: function(){
@@ -37,7 +37,7 @@ var MainComponent = React.createClass({
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
-			}.bind(this)
+			}.bind(this),
 		});
 	},
 	handleWeatherResult: function(weatherData, zipcode){
@@ -55,7 +55,7 @@ var MainComponent = React.createClass({
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
-			}.bind(this)
+			}.bind(this),
 		});
 	},
 	
@@ -92,9 +92,9 @@ var WeatherSearch = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		var zipcode = this.state.searchText.trim();
-		console.log("========ZipCode==========");
-		console.log(zipcode);
-		console.log("==================");
+		// console.log("========ZipCode==========");
+		// console.log(zipcode);
+		// console.log("==================");
 		this.props.searchWeather(zipcode);
 	},
 	handleSearchChange: function(e){
@@ -132,8 +132,8 @@ var ResultDisplay = React.createClass({
 	render: function(){
 		console.log(this.props);
 		var weatherData = this.props.weatherResult;
-		console.log("=============");
-		console.log(weatherData)
+		// console.log("=============");
+		// console.log(weatherData)
 
 		var goodImage = this.props.goodHairDay;
  		var badImage = this.props.badHairDay;
@@ -181,7 +181,7 @@ var CreateComponent = React.createClass({
 			},
 			success: function(data){
 				console.log(data);
-			}.bind(this)
+			}.bind(this),
 		});
 	},
 	addBadImage: function(imageURL){
@@ -194,7 +194,7 @@ var CreateComponent = React.createClass({
 			success: function(newImage){
 				console.log(newImage);
 				this.setState({ badHairDayImage: newImage })
-			}.bind(this)
+			}.bind(this),
 		});
 	},
 	render: function(){
@@ -230,9 +230,9 @@ var AddGoodImage = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		var imageURL = this.state.imageURL.trim();
-		console.log("========imageURL==========");
-		console.log(imageURL);
-		console.log("==================");
+		// console.log("========imageURL==========");
+		// console.log(imageURL);
+		// console.log("==================");
 		this.props.addGoodImage(imageURL);
 	},
 	render: function(){
@@ -268,9 +268,9 @@ var AddBadImage = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		var imageURL = this.state.imageURL.trim();
-		console.log("========imageURL==========");
-		console.log(imageURL);
-		console.log("==================");
+		// console.log("========imageURL==========");
+		// console.log(imageURL);
+		// console.log("==================");
 		this.props.addBadImage(imageURL);
 	},
 	render: function(){
