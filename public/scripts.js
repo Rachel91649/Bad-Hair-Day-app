@@ -63,7 +63,7 @@ var MainComponent = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<h1>BAD HAIR DAY or Nah??</h1>
+				<p className="page-title">BAD HAIR DAY or Nah??</p>
 				<WeatherSearch
 					searchWeather={this.searchWeather}
 				/>
@@ -94,11 +94,6 @@ var WeatherSearch = React.createClass({
 		console.log(zipcode);
 		console.log("==================");
 		this.props.searchWeather(zipcode);
-		// this is just for testing
-		// console.log("=======Image Ajax Calls Results===========");
-		//this.props.badsAjax();
-		// console.log("===========================================");
-		//this.props.goodsAjax();
 	},
 	handleSearchChange: function(e){
 		this.setState({searchText: e.target.value})
@@ -132,34 +127,12 @@ var WeatherSearch = React.createClass({
 //  Image Display COMPONENT
 // ===========================================
 var ResultDisplay = React.createClass({
-	// badsAjax();
-	// goodAjax();
-	// getImages: function(){
-	//  var weatherData = this.props.weatherResult;
-	//  if (weatherData.weather.main.humidity >= 85) {
-	// 		<img src={badImage} />
-	// 	} else {
-	// 		<img src={goodImage} />
-	// 		console.log("HALP!");
-	// 	}
-	// },
-	//  // if(weatherData.weather.main.humidity >= 85}) {
-	//  // 	badsAjax();
-	//  // 	// console.log(data);
-	//  // } else {
-	//  // 	goodsAjax();
-	//  // 	// console.log(data);
-	//  // }
-	// },
 	render: function(){
 		console.log(this.props);
 		var weatherData = this.props.weatherResult;
 		console.log("=============");
 		console.log(weatherData)
 
-		//const humid = renderIf({weatherData.weather.main.humidity <= 85});
-		// console.log("=======humidity==========");
-		// console.log(humid)
 		var goodImage = this.props.goodHairDay;
  		var badImage = this.props.badHairDay;
 
@@ -167,19 +140,18 @@ var ResultDisplay = React.createClass({
 			return(null)
 		} else if (weatherData != null && weatherData.weather.main.humidity >= 80) {
 			return(
-				//what am I rending on the user side?
-				//The users current weather that I just got from the api call
-				<div>
-					<h1>weather display goes here</h1>
-					 <p>{weatherData.weather.name}</p>
-					 <p>humidity:{weatherData.weather.main.humidity}</p>
-						<img src={badImage} />
+				<div className="img-holder">
+					{//<h1>weather display goes here</h1>
+					 }{//<p>{weatherData.weather.name}</p>
+					 }{//<p>humidity:{weatherData.weather.main.humidity}</p>
+						}
+						<img src={badImage} className="img" />
 				</div>
 			);
 		} else {
 			return(
-				<div>
-					<img src={goodImage} /> 
+				<div className="img-holder">
+					<img src={goodImage} className="img"/> 
 				</div>
 			);	
 		}
@@ -226,7 +198,7 @@ var CreateComponent = React.createClass({
 	render: function(){
 		return(
 			<div>
-			<h1>Add Your Own Images!</h1>
+			<p className="add-image-title">Add Your Own Images!</p>
 				<AddGoodImage 
 					addGoodImage={this.addGoodImage}
 				/>
@@ -265,7 +237,7 @@ var AddGoodImage = React.createClass({
 		return(
 			<div className="form-group">
 				<form className="form-inline" onSubmit={this.handleSubmit}>
-					<label htmlFor="image">Good Hair Day Image:</label>
+					<label htmlFor="image" className="label">Good Hair Day Image:</label>
 					<input
 						className="form-control"
 						type="text"
@@ -303,7 +275,7 @@ var AddBadImage = React.createClass({
 		return(
 			<div className="form-group">
 				<form className="form-inline" onSubmit={this.handleSubmit}>
-					<label htmlFor="image">Bad Hair Day Image:</label>
+					<label htmlFor="image" className="label">Bad Hair Day Image:</label>
 					<input
 						className="form-control"
 						type="text"
@@ -392,6 +364,7 @@ ReactDOM.render(
 	// 		weather: data,
 	// 	});
 	// },
+	//const humid = renderIf({weatherData.weather.main.humidity <= 85});
 	//need to create an if/else statement to toggle the displays
 	//will need to add functionality to switch the state in main component
 	{// <HairResultDisplay
@@ -436,7 +409,25 @@ ReactDOM.render(
 // 		);
 // 	}
 // });
-
+// badsAjax();
+	// goodAjax();
+	// getImages: function(){
+	//  var weatherData = this.props.weatherResult;
+	//  if (weatherData.weather.main.humidity >= 85) {
+	// 		<img src={badImage} />
+	// 	} else {
+	// 		<img src={goodImage} />
+	// 		console.log("HALP!");
+	// 	}
+	// },
+	//  // if(weatherData.weather.main.humidity >= 85}) {
+	//  // 	badsAjax();
+	//  // 	// console.log(data);
+	//  // } else {
+	//  // 	goodsAjax();
+	//  // 	// console.log(data);
+	//  // }
+	// },
 // // ======================================
 // // HAIR RESULT DISPLAY
 // // ======================================
