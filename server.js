@@ -25,8 +25,8 @@ app.use(methodOverride(function(req, res){
 
 
 // DATABASE
-var db = process.env.MONGODB_URI || "mongodb://localhost/bad-hair-day";
-mongoose.connect(db);
+var mongoUri = process.env.MONGOLAB_URI || "mongodb://localhost/bad-hair-day";
+mongoose.connect(mongoUri);
 
 
 // CONTROLLERS
