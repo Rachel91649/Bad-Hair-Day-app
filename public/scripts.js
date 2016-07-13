@@ -209,13 +209,27 @@ var CreateComponent = React.createClass({
 			}.bind(this)
 		});
 	},
+	addBadImage: function(imageURL){
+		$.ajax({
+			url: "/bads",
+			method: "POST",
+			data: {
+				image: imageURL
+			},
+			success: function(data){
+				console.log(data);
+			}.bind(this)
+		});
+	},
 	render: function(){
 		return(
 			<div>
 				<AddGoodImage 
-					addImage={this.addGoodImage}
+					addGoodImage={this.addGoodImage}
 				/>
-				<AddBadImage />
+				<AddBadImage 
+					addBadImage={this.addBadImage}
+				/>
 				<AddImageDisplay />
 			</div>
 		);
@@ -239,7 +253,7 @@ var AddGoodImage = React.createClass({
 		console.log("========imageURL==========");
 		console.log(imageURL);
 		console.log("==================");
-		this.props.addImage(imageURL);
+		this.props.addGoodImage(imageURL);
 	},
 	render: function(){
 		return(
@@ -264,22 +278,38 @@ var AddGoodImage = React.createClass({
 //  Add Bad Image Form COMPONENT
 // ===========================================
 var AddBadImage = React.createClass({
+	getInitialState: function(){
+		return{
+			imageURL: ""
+		}
+	},
+	handleFormChange: function(e){
+		this.setState({imageURL: e.target.value})
+	},
+	handleSubmit: function(e){
+		e.preventDefault();
+		var imageURL = this.state.imageURL.trim();
+		console.log("========imageURL==========");
+		console.log(imageURL);
+		console.log("==================");
+		this.props.addBadImage(imageURL);
+	},
 	render: function(){
 		return(
 			<div>
-				<h1>add bad image here</h1>
+				<h1>add image here</h1>
 				<form className="bad-image" onSubmit={this.handleSubmit}>
 					<label htmlFor="image">Bad Hair Day Image:</label>
 					<input
 						className="bad-image-input"
 						type="text"
 						placeholder="image"
-						// onChange={this.handleFormChange.bind(this, 'image')}
+						onChange={this.handleFormChange}
 					/>
 					<button>Add Image</button>
 				</form>
 			</div>
-		)
+		);
 	}
 });
 
