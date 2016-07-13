@@ -62,8 +62,10 @@ var MainComponent = React.createClass({
 
 	render: function(){
 		return(
-			<div>
-				<p className="page-title">BAD HAIR DAY or Nah??</p>
+			<div id="page">
+				<p className="page-title">BAD HAIR DAY</p>
+				<p className="page-title">or</p>
+				<p className="page-title">Nah?</p>
 				<WeatherSearch
 					searchWeather={this.searchWeather}
 				/>
