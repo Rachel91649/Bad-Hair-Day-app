@@ -47,6 +47,11 @@ router.post('/', function(req, res){
 			res.status(500).end();
 		}
 		res.send(true);
+		//var goodImage = good;
+		// console.log("============");
+		// console.log(goodImage);
+		// console.log("============");
+		// res.json(goodImage);
 	});
 });
 

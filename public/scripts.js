@@ -194,7 +194,8 @@ var CreateComponent = React.createClass({
 	getInitialState: function(){
 		return{
 			// imageText: "",
-			image: ""
+			badHairDayImage: "",
+			goodHairDayImage: "",
 		}
 	},
 	addGoodImage: function(imageURL){
@@ -216,21 +217,26 @@ var CreateComponent = React.createClass({
 			data: {
 				image: imageURL
 			},
-			success: function(data){
-				console.log(data);
+			success: function(newImage){
+				console.log(newImage);
+				this.setState({ badHairDayImage: newImage })
 			}.bind(this)
 		});
 	},
 	render: function(){
 		return(
 			<div>
+			<h1>Add Your Own Images!</h1>
 				<AddGoodImage 
 					addGoodImage={this.addGoodImage}
 				/>
 				<AddBadImage 
 					addBadImage={this.addBadImage}
 				/>
-				<AddImageDisplay />
+				 {//<AddImageDisplay
+				 }{//badHairDayImage={this.state.badHairDayImage}
+			  }{///>
+			  }
 			</div>
 		);
 	}
@@ -258,7 +264,6 @@ var AddGoodImage = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<h1>add image here</h1>
 				<form className="good-image" onSubmit={this.handleSubmit}>
 					<label htmlFor="image">Good Hair Day Image:</label>
 					<input
@@ -297,7 +302,6 @@ var AddBadImage = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<h1>add image here</h1>
 				<form className="bad-image" onSubmit={this.handleSubmit}>
 					<label htmlFor="image">Bad Hair Day Image:</label>
 					<input
@@ -316,15 +320,16 @@ var AddBadImage = React.createClass({
 // ===========================================
 //  Add Image Display COMPONENT
 // ===========================================
-var AddImageDisplay = React.createClass({
-	render: function(){
-		return(
-			<div>
-				<h1>Display new image here</h1>
-			</div>
-		)
-	}
-});
+// var AddImageDisplay = React.createClass({
+// 	render: function(){
+// 		var badImage = this.props.badHairDayImage;
+// 		return(
+// 			<div>
+// 				<img src={badImage}/>
+// 			</div>
+// 		)
+// 	}
+// });
 // ======================================
 // REACT DOM
 // ======================================

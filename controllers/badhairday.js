@@ -44,11 +44,17 @@ router.get('/badhair', function(req, res){
 //if there is an error, console.log err and respond with status 500 - end
 router.post('/', function(req, res){
 	Bad.create(req.body, function(err, bad){
+		var badImage = bad;
 		if(err){
 			console.log(err);
 			res.status(500).end();
 		}
 		res.send(true);
+		// var badImage = bad;
+		// console.log("============");
+		// console.log(badImage);
+		// console.log("============");
+		// res.json(badImage);
 	});
 });
 
