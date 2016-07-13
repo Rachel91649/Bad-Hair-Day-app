@@ -105,22 +105,22 @@ var WeatherSearch = React.createClass({
 	},
 	render: function(){
 		return(
-			<div className="searchBar">
-				<form onSubmit={this.handleSubmit}>
+			<div className="form-group">
+				<form className="form-inline" onSubmit={this.handleSubmit}>
 					<label
 						className="search-label"
 						htmlFor="search">Search
 					</label>
 					<br/>
 					<input
-						className="search-input"
+						className="form-control"
 						type="text"
 						placeholder="zipcode"
 						// value={this.props.text}
 						// ref="textInput"
 						onChange={this.handleSearchChange}
 					/>
-					<button className="button">??</button>
+					<button className="btn btn-primary active">??</button>
 				</form>
 			</div>
 		)
@@ -263,16 +263,16 @@ var AddGoodImage = React.createClass({
 	},
 	render: function(){
 		return(
-			<div>
-				<form className="good-image" onSubmit={this.handleSubmit}>
+			<div className="form-group">
+				<form className="form-inline" onSubmit={this.handleSubmit}>
 					<label htmlFor="image">Good Hair Day Image:</label>
 					<input
-						className="good-image-input"
+						className="form-control"
 						type="text"
 						placeholder="image"
 						onChange={this.handleFormChange}
 					/>
-					<button>Add Image</button>
+					<button className="btn btn-default active">Add Image</button>
 				</form>
 			</div>
 		);
@@ -301,16 +301,16 @@ var AddBadImage = React.createClass({
 	},
 	render: function(){
 		return(
-			<div>
-				<form className="bad-image" onSubmit={this.handleSubmit}>
+			<div className="form-group">
+				<form className="form-inline" onSubmit={this.handleSubmit}>
 					<label htmlFor="image">Bad Hair Day Image:</label>
 					<input
-						className="bad-image-input"
+						className="form-control"
 						type="text"
 						placeholder="image"
 						onChange={this.handleFormChange}
 					/>
-					<button>Add Image</button>
+					<button className="btn btn-default active">Add Image</button>
 				</form>
 			</div>
 		);
