@@ -225,7 +225,7 @@ var WeatherDisplay = React.createClass({
 
 		if (weatherData == null){
 			return(null)
-		} else if (weatherData != null && weatherData.weather.main.humidity >= 30 ) {
+		} else if (weatherData != null && weatherData.weather.main.humidity >= 80) {
 			return(
 				//what am I rending on the user side?
 				//The users current weather that I just got from the api call
