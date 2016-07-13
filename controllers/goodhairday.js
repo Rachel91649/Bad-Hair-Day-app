@@ -33,7 +33,7 @@ router.get('/goodhair', function(req, res){
 		// console.log(images);
 		console.log(images[0]);
 		console.log("===================");
-		res.json(images[0]);
+		res.send(images[0]);
 	});
 });
 
