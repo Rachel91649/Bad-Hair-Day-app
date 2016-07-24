@@ -24,7 +24,7 @@ var MainComponent = React.createClass({
 				this.setState({ badHairDay: image })
 			}.bind(this),
 			error: function(xhr, status, err){
-				console.log(status, err.toString());
+				// console.log(status, err.toString());
 			}.bind(this),
 		});
 	},
@@ -36,7 +36,7 @@ var MainComponent = React.createClass({
 				this.setState({ goodHairDay: image })
 			}.bind(this),
 			error: function(xhr, status, err){
-				console.error(status, err.toString());
+				// console.error(status, err.toString());
 			}.bind(this),
 		});
 	},
@@ -54,7 +54,7 @@ var MainComponent = React.createClass({
 				this.handleWeatherResult(weatherData, zipcode);
 			}.bind(this),
 			error: function(xhr, status, err){
-				console.error(status, err.toString());
+				// console.error(status, err.toString());
 			}.bind(this),
 		});
 	},
@@ -130,7 +130,7 @@ var WeatherSearch = React.createClass({
 // ===========================================
 var ResultDisplay = React.createClass({
 	render: function(){
-		console.log(this.props);
+		// console.log(this.props);
 		var weatherData = this.props.weatherResult;
 		// console.log("=============");
 		// console.log(weatherData)
