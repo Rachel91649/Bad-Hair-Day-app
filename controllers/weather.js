@@ -32,7 +32,11 @@ router.get('/currentweather/:zip', function(req, res){
 	request("http://api.openweathermap.org/data/2.5/weather?zip=" + req.params.zip + ",us&APPID=" + openWeather, function(error, repsonse, body){
 		var weatherData = JSON.parse(body)
 		console.log("====================");
-		console.log(weatherData.main.humidity);
+		console.log("This is weather Data");
+		console.log(weatherData);
+		console.log("====================");
+		console.log("This is Humidity from weather data");
+		console.log(weatherData.main);
 		console.log("====================");
 
 		res.json(weatherData)

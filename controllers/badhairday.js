@@ -28,7 +28,7 @@ router.get('/badhair', function(req, res){
 		for(var i = 0; i < bad.length; i++){
 			images.push(bad[i].image);
 		}
-		var shuffle = function(o) {//function shuffles. i = the length of my deck; j returns a random index number in the deck. the card in that index number is located and switches places with index[0]. This continues until the process has iterated through the entire length of the deck.
+		var shuffle = function(o) {//function shuffles. i = the length of the collection; j returns a random index number from the collection. the object in that index number is located and switches places with index[0]. This continues until the process has iterated through the entire length of the collection.
 			for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 				return o;
 		};
