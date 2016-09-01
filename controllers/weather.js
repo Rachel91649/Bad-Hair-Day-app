@@ -36,7 +36,7 @@ router.get('/currentweather/:zip', function(req, res){
 		console.log(weatherData);
 		console.log("====================");
 		console.log("This is Humidity from weather data");
-		console.log(weatherData.main);
+		console.log(weatherData.main.humidity);
 		console.log("====================");
 
 		res.json(weatherData)
