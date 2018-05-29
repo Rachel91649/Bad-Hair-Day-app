@@ -45,13 +45,13 @@ var MainComponent = React.createClass({
 			weatherResult: {weather: weatherData, zipcode: zipcode}
 		});
 	},
-	searchWeather: function(zipcode){
+	searchWeather: function(city, state){
 		$.ajax({
-			url: "/weather/currentweather/" + zipcode,
+			url: `/weather/currentweather/${state}/${city}`,
 			method: "GET",
 			success: function(weatherData){
         console.log("==============");
-        console.log("weather data")
+        console.log("weather data");
         console.log(weatherData);
         console.log("==============");
 			  this.badsAjax();
@@ -103,7 +103,7 @@ var WeatherSearch = React.createClass({
 		console.log("========ZipCode==========");
 		console.log(zipcode, city, state);
 		console.log("==================");
-		this.props.searchWeather(zipcode);
+		this.props.searchWeather(city, state);
 	},
 	handleSearchChange: function(e){
 		this.setState({

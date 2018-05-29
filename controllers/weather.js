@@ -24,12 +24,19 @@ var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 
 
-router.get('/currentweather/:city', function(req, res){
+router.get('/currentweather/:state/:city', function(req, res){
 	console.log("====================");
 	console.log("this is params :city");
 	console.log("====================");
-	console.log(req.params.city);
-	request("http://api.wunderground.com/api/" + weatherUnderground + "/conditions/q/" + req.params.state + "/" + req.params.city, function(error, repsonse, body){
+  console.log(req.params.city);
+  console.log("====================");
+	console.log("this is params :state");
+	console.log("====================");
+  console.log(req.params.state);
+
+  let state = req.params.state;
+  let city = req.params.city;
+	request(`http://api.wunderground.com/api/${weatherUnderground}/conditions/q/${state}/${city}`, function(error, repsonse, body){
 		var weatherData = JSON.parse(body)
 		console.log("====================");
 		console.log("This is weather Data");
