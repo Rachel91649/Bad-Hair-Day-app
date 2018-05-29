@@ -36,8 +36,9 @@ router.get('/currentweather/:state/:city', function(req, res){
 
   let state = req.params.state;
   let city = req.params.city;
-	request(`http://api.wunderground.com/api/${weatherUnderground}/conditions/q/${state}/${city}`, function(error, repsonse, body){
-		var weatherData = JSON.parse(body)
+	request(`http://api.wunderground.com/api/${weatherUnderground}/conditions/q/${state}/${city}.json`, function(error, repsonse, body){
+    var weatherData = JSON.parse(body);
+    //console.log(response);
 		console.log("====================");
 		console.log("This is weather Data");
 		console.log(weatherData);
