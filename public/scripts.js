@@ -116,7 +116,15 @@ var WeatherSearch = React.createClass({
 					<input
 						className="form-control"
 						type="text"
-						placeholder="zipcode"
+						placeholder="city"
+						// value={this.props.text}
+						// ref="textInput"
+						onChange={this.handleSearchChange}
+					/>
+          <input
+						className="form-control"
+						type="text"
+						placeholder="state"
 						// value={this.props.text}
 						// ref="textInput"
 						onChange={this.handleSearchChange}
