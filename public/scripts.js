@@ -90,19 +90,25 @@ var MainComponent = React.createClass({
 var WeatherSearch = React.createClass({
 	getInitialState: function(){
 		return{
-			searchText: ""
-		};
+      searchText: "", 
+      city: '', 
+      state: ''
+    };
 	},
 	handleSubmit: function(e){
 		e.preventDefault();
-		var zipcode = this.state.searchText.trim();
+    var zipcode = this.state.searchText.trim();
+    let city = this.state.city.trim();
+    let state = this.state.state.trim();
 		console.log("========ZipCode==========");
-		console.log(zipcode);
+		console.log(zipcode, city, state);
 		console.log("==================");
 		this.props.searchWeather(zipcode);
 	},
 	handleSearchChange: function(e){
-		this.setState({searchText: e.target.value})
+		this.setState({
+      [e.target.name]: e.target.value
+    })
 	},
 	render: function(){
 		return(
@@ -114,7 +120,9 @@ var WeatherSearch = React.createClass({
 					</label>
 					<br/>
 					<input
-						className="form-control"
+            className="form-control"
+            name="city"
+            id="city"
 						type="text"
 						placeholder="city"
 						// value={this.props.text}
@@ -122,7 +130,9 @@ var WeatherSearch = React.createClass({
 						onChange={this.handleSearchChange}
 					/>
           <input
-						className="form-control"
+            className="form-control"
+            name="state"
+            id="state"
 						type="text"
 						placeholder="state"
 						// value={this.props.text}
