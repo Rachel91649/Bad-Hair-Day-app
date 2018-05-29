@@ -5,7 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var request = require('request');
 var router = express.Router();
-var openWeather = process.env.OPEN_WEATHER_ID;
+// var openWeather = process.env.OPEN_WEATHER_ID;
 var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 //This is where I will put the weather api call
@@ -24,19 +24,19 @@ var weatherUnderground = process.env.WEATHER_UNDERGROUND_KEY;
 
 
 
-router.get('/currentweather/:zip', function(req, res){
+router.get('/currentweather/:city', function(req, res){
 	console.log("====================");
-	console.log("this is params :zip:");
+	console.log("this is params :city");
 	console.log("====================");
-	console.log(req.params.zip);
-	request("http://api.openweathermap.org/data/2.5/weather?zip=" + req.params.zip + ",us&APPID=" + openWeather, function(error, repsonse, body){
+	console.log(req.params.city);
+	request("http://api.wunderground.com/api/" + weatherUnderground + "/conditions/q/" + req.params.state + "/" + req.params.city, function(error, repsonse, body){
 		var weatherData = JSON.parse(body)
 		console.log("====================");
 		console.log("This is weather Data");
 		console.log(weatherData);
 		console.log("====================");
-		console.log("This is Humidity from weather data");
-		console.log(weatherData.main.humidity);
+		// console.log("This is Humidity from weather data");
+		// console.log(weatherData.main.humidity);
 		console.log("====================");
 
 		res.json(weatherData)
