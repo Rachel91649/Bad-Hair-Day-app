@@ -50,11 +50,15 @@ var MainComponent = React.createClass({
 			url: "/weather/currentweather/" + zipcode,
 			method: "GET",
 			success: function(weatherData){
+        console.log("==============");
+        console.log("weather data")
+        console.log(weatherData);
+        console.log("==============");
 			  this.badsAjax();
 				this.handleWeatherResult(weatherData, zipcode);
 			}.bind(this),
 			error: function(xhr, status, err){
-				// console.error(status, err.toString());
+				console.error(status, err.toString());
 			}.bind(this),
 		});
 	},
@@ -92,9 +96,9 @@ var WeatherSearch = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
 		var zipcode = this.state.searchText.trim();
-		// console.log("========ZipCode==========");
-		// console.log(zipcode);
-		// console.log("==================");
+		console.log("========ZipCode==========");
+		console.log(zipcode);
+		console.log("==================");
 		this.props.searchWeather(zipcode);
 	},
 	handleSearchChange: function(e){
