@@ -40,11 +40,11 @@ router.get('/currentweather/:state/:city', function(req, res){
     var weatherData = JSON.parse(body);
     //console.log(response);
 		console.log("====================");
-		console.log("This is weather Data");
+		console.log("This is weather on the back end Data");
 		console.log(weatherData);
 		console.log("====================");
 		// console.log("This is Humidity from weather data");
-		// console.log(weatherData.main.humidity);
+		 console.log(weatherData.response.current_observation);
 		console.log("====================");
 
 		res.json(weatherData)

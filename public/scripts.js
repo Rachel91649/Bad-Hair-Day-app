@@ -5,6 +5,7 @@
 // ===========================================
 // will hold all the state
 //get initial stat of search bar
+
 var MainComponent = React.createClass({
 	getInitialState: function(){
 		return{
@@ -40,33 +41,30 @@ var MainComponent = React.createClass({
 			}.bind(this),
 		});
 	},
-	handleWeatherResult: function(weatherData, zipcode){
+	handleWeatherResult: function(weatherData, humidity){
 		this.setState({
-			weatherResult: {weather: weatherData, zipcode: zipcode}
+			weatherResult: {weather: weatherData, humidity: humidity}
 		});
 	},
 	searchWeather: function(city, state){
-    axios.get(`/weather/currentweather/${state}/${city}`)
-    .then((response) => {
-      console.log(response);
-    });
-    /*
 		$.ajax({
 			url: `/weather/currentweather/${state}/${city}`,
 			method: "GET",
 			success: function(weatherData){
         console.log("==============");
         console.log("weather data");
-        console.log(weatherData);
+        console.log(weatherData.current_observation.relative_humidity);
+        let humidity = parseInt(weatherData.current_observation.relative_humidity.substring(0,2));
+        console.log(humidity);
         console.log("==============");
 			  this.badsAjax();
-				this.handleWeatherResult(weatherData, zipcode);
+				this.handleWeatherResult(weatherData, humidity);
 			}.bind(this),
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
 			}.bind(this),
     });
-    */
+    
 	},
 	
 
@@ -82,7 +80,8 @@ var MainComponent = React.createClass({
 				<ResultDisplay 
 					goodHairDay={this.state.goodHairDay}
 					badHairDay={this.state.badHairDay}
-					weatherResult={this.state.weatherResult}
+          weatherResult={this.state.weatherResult}
+          humidity={this.state.humidity}
 				/>
 			</div>
 		);
@@ -159,16 +158,18 @@ var WeatherSearch = React.createClass({
 var ResultDisplay = React.createClass({
 	render: function(){
 		// console.log(this.props);
-		var weatherData = this.props.weatherResult;
-		// console.log("=============");
-		// console.log(weatherData)
+    var weatherData = this.props.weatherResult;
+    var humidity = this.props.humidity;
+		console.log("======Weather Data Props in ResultDisplay=======");
+    console.log(weatherData);
+    console.log(humidity);
 
 		var goodImage = this.props.goodHairDay;
  		var badImage = this.props.badHairDay;
 
 		if (weatherData == null){
 			return(null)
-		} else if (weatherData != null && weatherData.weather.main.humidity >= 65) {
+		} else if (weatherData.weather != null && humidity >= 65) {
 			return(
 				<div className="img-holder">
 					{//<h1>weather display goes here</h1>
