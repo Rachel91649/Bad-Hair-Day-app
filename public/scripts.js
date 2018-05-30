@@ -46,6 +46,11 @@ var MainComponent = React.createClass({
 		});
 	},
 	searchWeather: function(city, state){
+    axios.get(`/weather/currentweather/${state}/${city}`)
+    .then((response) => {
+      console.log(response);
+    });
+    /*
 		$.ajax({
 			url: `/weather/currentweather/${state}/${city}`,
 			method: "GET",
@@ -60,7 +65,8 @@ var MainComponent = React.createClass({
 			error: function(xhr, status, err){
 				console.error(status, err.toString());
 			}.bind(this),
-		});
+    });
+    */
 	},
 	
 
