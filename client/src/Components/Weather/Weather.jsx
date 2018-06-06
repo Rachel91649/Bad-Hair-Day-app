@@ -25,12 +25,16 @@ class Weather extends Component {
   }
 
   getGoodHairImage = () => {
-    axios.get("/good")
+    axios.get("/goods/goodhair")
+    .then((response) => {
+      console.log(response);
+    })
   }
 
 
   componentDidMount(){
-    this.getBadHairImage()
+    this.getBadHairImage();
+    this.getGoodHairImage();
   }
 
   render(){
