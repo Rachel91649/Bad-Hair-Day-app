@@ -1,11 +1,11 @@
-// console.log("I'm going to make React Love me...");
+//console.log("I'm going to make React Love me...");
 
 // ===========================================
 // MAIN COMPONENT - THE KEEPER OF LOST SOULS
 // ===========================================
 // will hold all the state
 //get initial stat of search bar
-
+/*
 var MainComponent = React.createClass({
 	getInitialState: function(){
 		return{
@@ -515,4 +515,5 @@ ReactDOM.render(
 	 {//{this.handleImages}
 	}
 	 {//<img src={this.handleImages} />
-	}
+  }
+  */
