@@ -18,7 +18,9 @@ class Weather extends Component {
       city: '',
       showImage: false,
       showWeather: false,
-      weather: []
+      weather: {
+        date: ''
+      }
     }
   }
 
@@ -49,11 +51,12 @@ class Weather extends Component {
     });
   }
 
-  handleWeatherSearchSubmit = (e) => {
-    e.preventDefault();
-  }
 
-  searchWeather = (state, city) => {
+  searchWeather = (e) => {
+    e.preventDefault();
+   
+    let { state, city } = this.state;
+
     axios.get(`/weather/currentweather/${state}/${city}`)
     .then((response) => {
       console.log(response);
@@ -75,7 +78,12 @@ class Weather extends Component {
     console.log(city, state);
     return(
       <div>
-        <h1>Weather search and images displaged here</h1>
+        <div id="page">
+          <p className="page-title">BAD HAIR DAY</p>
+          <p className="page-title">or</p>
+          <p className="page-title">Nah?</p>
+        </div>
+
         <div className="form-group">
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <label
@@ -101,7 +109,7 @@ class Weather extends Component {
               value={this.state.state}
               onChange={this.handleSearchInput}
             />
-            <button className="btn btn-primary active">??</button>
+            <button className="btn btn-primary active" onClick={this.searchWeather}>??</button>
           </form>
         </div>
         <WeatherDisplay />
