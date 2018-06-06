@@ -20,14 +20,20 @@ class Weather extends Component {
   getBadHairImage = () => {
     axios.get("/bads/badhair")
     .then((response) =>{
-      console.log(response);
+      console.log(response.data);
+      this.setState({
+        badHairDayImg: response.data
+      })
     });  
   }
 
   getGoodHairImage = () => {
     axios.get("/goods/goodhair")
     .then((response) => {
-      console.log(response);
+      console.log(response.data);
+      this.setState({
+        goodHairDayImg: response.data
+      })
     })
   }
 
@@ -38,6 +44,9 @@ class Weather extends Component {
   }
 
   render(){
+    const { goodHairDayImg, badHairDayImg } = this.state;
+
+    
     return(
       <div>
         <h1>Weather search and images displaged here</h1>
